@@ -1,0 +1,198 @@
+/* RESET */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+    margin: 0;
+}
+/*
+    3. Allow percentage-based heights in the application
+  */
+html,
+body {
+    height: 100%;
+}
+/*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+/*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+/*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+h1,
+h2,
+h3 {
+    line-height: 1;
+}
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+    isolation: isolate;
+}
+
+:root {
+    --CLR-PRIMARY-400: hsl(158, 36%, 37%);
+    --CLR-PRIMARY-500: hsl(158, 36%, 20%);
+    --CLR-SECONDARY-200: hsl(30, 38%, 92%);
+
+    --CLR-NEUTRAL-900: hsl(212, 21%, 14%);
+    --CLR-NEUTRAL-400: hsl(228, 12%, 48%);
+    --CLR-NEUTRAL-100: hsl(0, 0%, 100%);
+
+    --FW-REGUALR: 500;
+    --FW-BOLD: 700;
+
+    --FF-ACCENT: "Fraunces", serif;
+    --FF-BASE: "Montserrat", sans-serif;
+}
+
+/* GENERAL STYLING */
+
+body {
+    font-family: var(--FF-BASE);
+    font-weight: var(--FW-REGUALR);
+    font-size: 0.875rem;
+    color: var(--CLR-NEUTRAL-400);
+    background-color: var(--CLR-SECONDARY-200);
+
+    /* for this project only */
+    display: grid;
+    place-content: center;
+    margin: 1rem;
+}
+
+/* UTILITY CLASSES */
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* BUTTON */
+.button {
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border: 0;
+    border-radius: 0.5rem;
+
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--CLR-PRIMARY-400);
+    color: var(--CLR-NEUTRAL-100);
+    font-weight: var(--FW-BOLD);
+    font: size 0.925rem;
+}
+
+.button[data-icon="shopping-cart"]::before {
+    content: "";
+    width: 15px;
+    height: 16px;
+    background-image: url(images/icon-cart.svg);
+}
+
+.button:is(:hover, :focus) {
+    background-color: var(--CLR-PRIMARY-500);
+}
+
+/* PRODUCT STYLES */
+.product {
+    --CONTENT-PADDING: 1.5rem;
+    --CONTENT-SPACING: 1rem;
+
+    display: grid;
+    background-color: var(--CLR-NEUTRAL-100);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width:600px;
+}
+
+@media (min-width:600px){
+  .product{
+    --CONTENT-PADDING:2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.product__content {
+    display: grid;
+    gap: var(--CONTENT-SPACING);
+    padding: var(--CONTENT-PADDING);
+}
+
+.product__category {
+    font-size: 0.825rem;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    /* while using letter spacing we can use pixels */
+}
+
+.product__title {
+    font-size: 2rem;
+    font-family: var(--FF-ACCENT);
+    color: var(--CLR-NEUTRAL-900);
+}
+
+.product__price {
+    font-size: 2rem;
+    font-family: var(--FF-ACCENT);
+    color: var(--CLR-PRIMARY-400);
+}
